@@ -41,7 +41,7 @@ namespace MVCWebApp
                     .AddDefaultUI()
                     .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-
+        
             services.AddScoped<IProjectRepository, MockProjectRepository>(); //add repository
             services.AddScoped<IPersonRepository, PersonRepository>(); //add repository
             services.AddHttpContextAccessor();
@@ -62,7 +62,7 @@ namespace MVCWebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(options => options.WithOrigins("*").AllowAnyHeader().AllowAnyMethod());
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -71,7 +71,7 @@ namespace MVCWebApp
             app.UseAuthorization();
 
             app.UseSession();
-
+            app.UseCors("MyAllowSpecificOrigins");
             app.UseEndpoints(endpoints =>
             {
                 //Default route

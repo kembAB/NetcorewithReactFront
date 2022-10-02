@@ -8,6 +8,8 @@ namespace MVCWebApp.Models.Person
 {
     public class Person
     {
+        private Person p;
+
         [Key]
         public int ID { get; set; }
         [Required]
@@ -21,6 +23,11 @@ namespace MVCWebApp.Models.Person
         public Person()
         {
             PersonLanguages = new List<PersonLanguage>();
+        }
+
+        public Person(Person p)
+        {
+            this.p = p;
         }
     }
 }
